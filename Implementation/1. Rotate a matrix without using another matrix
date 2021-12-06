@@ -11,6 +11,7 @@ Answer:
 
 It means first row becmes last, second row become second last.
 It is a good observation problem. In this, problem we have to work with four integers every time.
+Problem link- https://leetcode.com/problems/rotate-image/
 
 // ============================================================================ //
 // ||                                                                        || //
@@ -129,3 +130,6 @@ int main()
 // A L H A M D U L I L L A H
 // 1 2 3 2 1
 }
+
+Another problem is of same type. But that problem tells whether we can make matrix1 is equal to matrix 2 by rotating matrix1 90 degres several times.
+Problem link- https://leetcode.com/problems/determine-whether-matrix-can-be-obtained-by-rotation/
