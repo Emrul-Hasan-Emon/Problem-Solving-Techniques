@@ -1,0 +1,64 @@
+The approach is to first create an array of preix xor where prefix[i] stores xor of arr[1]^arr[1]^arr[2]......arr[i]. After that just convert the problem into mxaimum xor 
+of two numbers.
+
+struct Node
+{
+    Node *child[2];
+};
+
+class Solution{   
+public:
+    int insert(int n, Node *root)
+    {
+        Node *node=root;
+        for(int i=28; i>=0; i--)
+        {
+            int b=(n>>i)&1;
+            if(!node->child[b])
+            {
+                node->child[b]=new Node();
+            }
+            node=node->child[b];
+        }
+    }
+    int mx_xor(int n, Node *root)
+    {
+        Node *node=root;
+        int mx=0;
+        for(int i=28; i>=0; i--)
+        {
+            int b=(n>>i)&1;
+            if(node->child[1-b])
+            {
+                mx+=(1<<i);
+                node=node->child[1-b];
+            }
+            else if(!node->child[b])
+            {
+                return 0;
+            }
+            else
+            {
+                node=node->child[b];
+            }
+        }
+        return mx;
+    }
+    int maxSubarrayXOR(int N, int arr[]){    
+       Node *root=new Node();
+       int c[N], i;
+       for(i=1, c[0]=arr[0]; i<N; i++)
+       {
+           c[i]=c[i-1]^arr[i];
+       }
+      
+       int ans=0;
+       for(i=0; i<N; i++)
+       {
+           ans=max(ans, mx_xor(c[i], root));
+           ans=max(ans, c[i]);
+           insert(c[i], root);
+       }
+       return ans;
+    }
+};
