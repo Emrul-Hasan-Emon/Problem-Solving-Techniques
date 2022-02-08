@@ -1,0 +1,57 @@
+Problem No : https://leetcode.com/problems/maximum-xor-of-two-numbers-in-an-array/
+
+struct Node
+{
+    Node *links[2];
+};
+
+class Solution {
+private:
+    Node *root;
+public:
+    Solution()
+    {
+        root=new Node();
+    }
+    
+    void insert(int n)
+    {
+        Node *temp=root;
+        for(int i=31; i>=0; i--)
+        {
+            int bit=(n>>i)&1;
+            if(!temp->links[bit])
+                temp->links[bit]=new Node();
+            temp=temp->links[bit];
+        }
+    }
+    
+    int max_xor(int n)
+    {
+        int mx=0;
+        Node *temp=root;
+        for(int i=31; i>=0; i--)
+        {
+            int bit=(n>>i)&1;
+            if(temp->links[1-bit])
+            {
+                mx+=(1<<i);
+                temp=temp->links[1-bit];
+            }
+            else
+            {
+                temp=temp->links[bit];
+            }
+        }
+        return mx;
+    }
+    
+    int findMaximumXOR(vector<int>& nums) {
+        int mx=0;
+        for(int c: nums)
+            insert(c);
+        for(int c: nums)
+            mx=max(mx, max_xor(c));
+        return mx;
+    }
+};
