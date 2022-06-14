@@ -96,6 +96,7 @@ void solve()
     }
     int source;
     cin >> source;
+    memset(vis, false, sizeof(vis));
     DFS(source);
     cout << endl;
 }
