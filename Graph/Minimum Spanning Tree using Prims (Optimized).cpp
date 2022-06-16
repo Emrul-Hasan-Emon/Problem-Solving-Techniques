@@ -89,9 +89,10 @@ void solve()
     parent[0] = -1;
     pq.push({0, 0});
     
-    for(int cnt = 0; cnt < node-1; cnt++) {
+      while(!pq.empty()) {
     	int u = pq.top().second;
     	pq.pop();
+      if(mstSet[u] == true) continue;
     	mstSet[u] = true;
     	
     	for(auto it : adj[u]) {
