@@ -107,7 +107,7 @@ void solve()
     
     for(int i = 1; i <= node; i++)
     {
-    	if(vis[i] == false) bfs(i);
+    	bfs(i);
     	cout << endl;
     }
 }
