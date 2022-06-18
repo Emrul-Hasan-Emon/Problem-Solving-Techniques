@@ -1,7 +1,8 @@
-The problem is I will be given a graph consists of nodes and edges. This will be a directed graph. And I will given a source also. I have to find the shortest distance
+The problem is I will be given a graph consists of nodes and edges as well as the weights also. This will be a directed graph. And I will given a source also. I have to find the shortest distance
 from source to every other node.
 
-We can do this using topological sort technique. First we find the topological order. Then we can find the shortest distance using the topological order.
+We can do this using topological sort technique. First we find the topological order. Then we can find the shortest distance using the topological order. Because by finding 
+topological order in directed graph we can say which will come before and which node will come after. By this we can find the shortest distance.
 
 ///              B I S M I L L A H I R  R A H M A N I R  R A H I M
 
