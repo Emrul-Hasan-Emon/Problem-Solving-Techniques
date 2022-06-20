@@ -69,13 +69,16 @@ void solve()
 {
     int node, edges, i;
     cin >> node >> edges;
+  
     vector<pair<int, int> >adj[node];
+  
     for(i = 1; i <= edges; i++) {
     	int u, v, wt;
     	cin >> u >> v >> wt;
     	adj[u].push_back({v, wt});
     	adj[v].push_back({u, wt});
     }
+  
     int parent[node]; // node are considered from 0 to node-1; 0 based;
     int distance[node];
     bool mstSet[node];
@@ -84,26 +87,28 @@ void solve()
     	distance[i] = INT_MAX;
     	mstSet[i] = false;
     }
+  
     priority_queue<pair<int, int>, vector<pair<int, int> >, greater<pair<int, int> > >pq;
     distance[0] = 0;
     parent[0] = -1;
     pq.push({0, 0});
     
       while(!pq.empty()) {
-    	int u = pq.top().second;
-    	pq.pop();
-      if(mstSet[u] == true) continue;
-    	mstSet[u] = true;
-    	
-    	for(auto it : adj[u]) {
-    		int v = it.first;
-    		int wt = it.second;
-    		
-    		if(mstSet[v] == false and wt < distance[v]) {
-    			parent[v] = u;
-    			distance[v] = wt;
-    			pq.push({distance[v], v});
-    		}
+        int u = pq.top().second;
+        pq.pop();
+        
+        if(mstSet[u] == true) continue;
+        mstSet[u] = true;
+
+        for(auto it : adj[u]) {
+          int v = it.first;
+          int wt = it.second;
+
+          if(mstSet[v] == false and wt < distance[v]) {
+            parent[v] = u;
+            distance[v] = wt;
+            pq.push({distance[v], v});
+          }
     	}
     }
 
@@ -111,6 +116,7 @@ void solve()
     	cout << i << " " << parent[i] << endl;
     }
 }
+
 void init_code()
 {
     freopen("input.txt", "r", stdin);
