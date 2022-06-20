@@ -1,4 +1,5 @@
-This is the brute force version of prims algorithm. Complexity is greater than node*node
+This is the brute force version of prims algorithm. Complexity is greater than node*node.
+Here nodes are numbered from 0 to node-1. 
 
 ///              B I S M I L L A H I R  R A H M A N I R  R A H I M
 
