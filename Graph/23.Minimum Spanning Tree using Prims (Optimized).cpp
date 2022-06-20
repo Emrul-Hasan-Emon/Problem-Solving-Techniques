@@ -1,4 +1,5 @@
 This is the optimal version of prims algorithm. Here we use priority_queue for keeping track of nodes.
+Here nodes are numbered from 0 to node-1.
   ///              B I S M I L L A H I R  R A H M A N I R  R A H I M
 
 // ============================================================================ //
