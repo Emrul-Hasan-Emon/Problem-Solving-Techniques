@@ -70,13 +70,16 @@ void solve()
 {
     int node, edges, i;
     cin >> node >> edges;
+    
     vector<pair<int, int> >adj[node];
+    
     for(i = 1; i <= edges; i++) {
     	int u, v, wt;
     	cin >> u >> v >> wt;
     	adj[u].push_back({v, wt});
     	adj[v].push_back({u, wt});
     }
+    
     int parent[node]; // node are considered from 0 to node-1; 0 based;
     int distance[node];
     bool mstSet[node];
@@ -86,6 +89,7 @@ void solve()
     	parent[i] = -1;
     	mstSet[i] = false;
     }
+    
     distance[0] = 0;
     
     for(int cnt = 0; cnt < node-1; cnt++) {
@@ -98,6 +102,7 @@ void solve()
     			u = i;
     		}
     	}
+        
     	mstSet[u] = true;
     	for(auto it : adj[u]) {
     		int v = it.first;
@@ -109,10 +114,12 @@ void solve()
     		}
     	}
     }
+    
     for(i = 1; i < node; i++) {
     	cout << i << " " << parent[i] << endl;
     }
 }
+
 void init_code()
 {
     freopen("input.txt", "r", stdin);
