@@ -1,0 +1,66 @@
+***Digits of a Factorial in Base 10
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int findDigits(int n)
+{
+	if(n < 0) return 0;
+	if(n == 1) return 1;
+	
+	double digits = 0;
+	for(int i = 2; i <= n; i++) {
+		digits += log10(i);
+	}
+	return floor(digits)+1;
+}
+
+int main()
+{
+	int n;
+	cin >> n;
+	int digits = findDigits(n);
+	cout << digits << endl;
+}
+
+***Digits of a Factorial in Base B
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int findDigits(int n)
+{
+	if(n < 0) return 0;
+	if(n == 1) return 1;
+	
+	double digits = 0;
+	for(int i = 2; i <= n; i++) {
+		digits += log(i);
+	}
+	return floor(digits)+1;
+}
+
+int main()
+{
+	int n, b;
+	cin >> n >> b;
+	int digits = findDigits(n);
+	digits = digits/log(b);
+	
+	cout << digits+1 << endl;
+}
+
+
+****Digits in a Factorial Pre Calculation
+Problem: https://lightoj.com/problem/digits-of-factorial
+
+const int lx = 1e6+123;
+double fact[lx];
+void precal()
+{
+	fact[0] = 0;
+	for(int i = 1; i < lx; i++) {
+		fact[i] = fact[i-1] + log(i);
+	}
+}
+
