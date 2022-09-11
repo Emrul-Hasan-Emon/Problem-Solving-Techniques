@@ -1,3 +1,7 @@
+Problem: I will be given an array of n integers and q queries. Each query I will given two integer l and r. In every query I have to print the summation of all elements
+of the array within range l to r(inclusive);
+
+
 ///              B I S M I L L A H I R  R A H M A N I R  R A H I M
 
 // ============================================================================ //
