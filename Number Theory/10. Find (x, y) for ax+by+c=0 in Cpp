@@ -54,4 +54,6 @@ int main()
     {
     	cout << x*(-c/g) << " " << y*(-c/g) << endl;
     }
+    If it was ax+by = c, then we don't need to divide by -c
+    Because for ax+by+c=0 we have to convert it ax+by=-c
 }
