@@ -1,0 +1,13 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+  long long a, b, mod;
+  cin >> a >> b >> mod;
+  
+  if(mod-a > b) a = a+b;
+  else a = a + b - mod;
+  
+  a represents the answer of (a+b)%mod
+}
