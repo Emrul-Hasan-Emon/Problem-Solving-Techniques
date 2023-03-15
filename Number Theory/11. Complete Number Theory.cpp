@@ -110,6 +110,7 @@ int main()
 }
 
 ***************************Optimized Version - SQRT version***************************
+
 #include<bits/stdc++.h>
 using namespace std;
 
@@ -129,4 +130,59 @@ int main()
       }
     }
     cout << sum << endl;
+}
+
+
+
+....................Problem: Find number of divisor for every number 1 to n. (NOD)
+
+***************************Brute  Force***************************
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n;
+    cin >> n;
+    
+    for(int i = 1; i <= n; i++)
+    {
+	int x = i;
+	int divisor = 0;
+	for(int j = 1; j * j <= x; j++)
+	{
+	    if(j * j == x) divisor++;
+	    else if(x%j == 0) divisor += 2;
+	}
+	cout << "Numbe of divisor for " << i << " is " << divisor << endl;
+    }
+}
+
+***************************Optimized Version - SQRT version***************************
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n;
+    cin >> n;
+    
+    int a[n + 5];
+    for(int i = 1; i <= n; i++) a[i] = 0;
+    
+    for(int i = 1; i * i <= n; i++)
+    {
+        for(int j = i * i; j <= n; j += i)
+        {
+            if(i*i == j) a[j]++;
+            else a[j] += 2;
+        }
+    }
+    
+    for(int i = 1; i <= n; i++)
+    {
+	cout << "Number of divisor of " << i << " is " << a[i] << endl;
+    }
 }
