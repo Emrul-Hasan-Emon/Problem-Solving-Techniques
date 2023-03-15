@@ -248,4 +248,169 @@ int main()
     }
 }
 
+....................Problem: Sieve and Storing Primes in a vector
 
+bool mark[lx];
+vector<int> primes;
+ 
+void sieve()
+{
+    mark[0] = mark[1] = true;
+    
+    for(int i = 3; i*i <= lx; i++)
+    {
+	if(!mark[i])
+	{
+	    for(int j = i*i; j < lx; j += i)
+		mark[j] = true;
+	}
+    }
+    
+    primes.push_back(2);
+    for(int i = 3; i < lx; i += 2)
+    {
+	if(!mark[i])
+	{
+	    primes.push_back(i);
+	}
+    }
+}
+
+....................Problem: Prime Factorization
+
+#include<bits/stdc++.h>
+using namespace std;
+
+const int lx = 1e6;
+
+bool mark[lx];
+vector<int> primes;
+ 
+void sieve()
+{
+    mark[0] = mark[1] = true;
+    
+    for(int i = 3; i*i <= lx; i++)
+    {
+	if(!mark[i])
+	{
+	    for(int j = i*i; j < lx; j += i)
+		mark[j] = true;
+	}
+    }
+    
+    primes.push_back(2);
+    for(int i = 3; i < lx; i += 2)
+    {
+	if(!mark[i])
+	{
+	    primes.push_back(i);
+	}
+    }
+}
+
+void factorize(int n)
+{
+    vector<pair<int, int> > v;
+    for(int i = 0; i < primes.size() and primes[i] * primes[i] <= n; i++)
+    {
+	if(n%primes[i] == 0)
+	{
+	    int cnt = 0;
+	    while(n%primes[i] == 0)
+	    {
+		n /= primes[i];
+		cnt++;
+	    }
+	    v.push_back({primes[i], cnt});
+	}
+    }
+    if(n > 1) v.push_back({n, 1});
+    for(auto it : v) cout << it.first << " " << it.second << endl;;
+}
+
+int main()
+{
+    sieve();
+    int n;
+    cin >> n;
+    factorize(n);
+}
+
+....................Problem: Find number of integers from 1 to n are co-prime with n. (Euler Totient Function)
+
+void euler_totient(int n)
+{
+    int result = n;
+    int m = n;
+    for(int i = 0; i < primes.size() and primes[i] * primes[i] <= n; i++)
+    {
+	if(n%primes[i] == 0)
+	{
+	    int cnt = 0;
+	    while(n%primes[i] == 0)
+	    {
+		n /= primes[i];
+		cnt++;
+	    }
+	    result = result - (result / primes[i]);
+	}
+    }
+    if(n > 1) result = result - (result / n);
+    cout << "Number of integers co-prime with " << m << " are " << result << endl;
+}
+
+....................Problem: Find the summation of integers from 1 to n which are co-prime with n. (Euler Totient Function)
+	
+void euler_totient(int n)
+{
+    int result = n;
+    int m = n;
+    for(int i = 0; i < primes.size() and primes[i] * primes[i] <= n; i++)
+    {
+	if(n%primes[i] == 0)
+	{
+	    int cnt = 0;
+	    while(n%primes[i] == 0)
+	    {
+		n /= primes[i];
+		cnt++;
+	    }
+	    result = result - (result / primes[i]);
+	}
+    }
+    if(n > 1) result = result - (result / n);
+
+    // Now for summation we have a formula
+    // sum = (euler(n) / 2) * n
+    
+    int sum = (result * m) / 2;
+    cout << "Sum of integers which are co-prime with " << m << " is " << sum << endl;
+}
+
+....................Problem: Find number of integers from 1 to n that has gcd k with n. (Euler Totient Function)
+
+void euler_totient(int n, int k)
+{
+    // First divide n/k and then find totient of n/k. That will be the answer.
+    // Because which has gcd 1 with n/k, they will have gcd k with (n/k)*k or n obviously
+    n /= k;
+    int result = n;
+    int m = n;
+    for(int i = 0; i < primes.size() and primes[i] * primes[i] <= n; i++)
+    {
+	if(n%primes[i] == 0)
+	{
+	    int cnt = 0;
+	    while(n%primes[i] == 0)
+	    {
+		n /= primes[i];
+		cnt++;
+	    }
+	    result = result - (result / primes[i]);
+	}
+    }
+    if(n > 1) result = result - (result / n);
+
+    cout << result << endl;
+}
